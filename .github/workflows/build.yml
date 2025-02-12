@@ -1,12 +1,18 @@
-name: Build the thesis
+name: Build the thesis and deploy on GitHub Pages
 
 on:
   push:
     branches: [main]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
-  build_latex:
+  build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
@@ -17,5 +23,37 @@ jobs:
       - name: Upload PDF file
         uses: actions/upload-artifact@v4.6.0
         with:
-          name: PDF
+          name: thesis.pdf
           path: thesis.pdf
+
+  deploy:
+    needs: build
+
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
+
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Import artifact
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: thesis.pdf
+          path: github-pages/
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5.0.0
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3.0.1
+        with:
+          path: github-pages/
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4.0.5
