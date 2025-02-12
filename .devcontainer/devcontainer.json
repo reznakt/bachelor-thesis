@@ -6,6 +6,7 @@
 			"extensions": [
 				"james-yu.latex-workshop",
 				"nickfode.latex-formatter",
+				"tecosaur.latex-utilities",
 				"valentjn.vscode-ltex"
 			],
 			"settings": {
