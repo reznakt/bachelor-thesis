@@ -1,0 +1,11 @@
+{
+    "editor.defaultFormatter": "nickfode.latex-formatter",
+    "explorer.excludeGitIgnore": true,
+    "files.autoSave": "afterDelay",
+    "latex-utilities.message.update.show": false,
+    "latex-workshop.formatting.latex": "tex-fmt",
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.outDir": "build",
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    "ltex.language": "en-US",
+}

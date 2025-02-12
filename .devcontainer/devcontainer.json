@@ -1,0 +1,16 @@
+{
+	"name": "LaTeX Development",
+	"image": "texlive/texlive:latest",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"james-yu.latex-workshop",
+				"nickfode.latex-formatter",
+				"valentjn.vscode-ltex"
+			],
+			"settings": {
+				"terminal.integrated.shell.linux": "/bin/bash"
+			}
+		}
+	}
+}

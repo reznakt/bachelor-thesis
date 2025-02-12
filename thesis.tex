@@ -1,0 +1,80 @@
+\documentclass[11pt, a4paper, oneside, openany, draft]{book}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[english]{babel}
+
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{lmodern}
+\usepackage{enumitem}
+\usepackage{todonotes}
+\usepackage{setspace}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{amssymb,amsmath}
+\usepackage{mathtools}
+\usepackage{float}
+\usepackage[pass]{geometry}
+\usepackage{ifdraft}
+\usepackage{parskip}
+
+\usepackage{amsthm}
+\newtheorem{theorem}{Věta}
+
+\usepackage[Algoritmus]{algorithm}
+
+\usepackage[ unicode=true,
+             plainpages=false,
+             pdfpagelabels,
+             draft=false,
+             hyperfootnotes=false,
+             colorlinks=true,
+             linkcolor={Sepia},
+             citecolor={PineGreen},
+             urlcolor={MidnightBlue},
+           ]{hyperref}
+
+\hypersetup{
+    pdfauthor={Tomáš Režňák},
+    pdftitle={SVG Manipulation Library},
+    pdfsubject={Bachelor's Thesis}
+}
+
+\usepackage[backend=bibtex8,
+            sortlocale=en_US,
+            bibencoding=UTF8
+            maxnames=100
+           ]{biblatex}
+
+\addbibresource{bibliography.bib}
+
+\setlength{\tabcolsep}{6pt}
+\setlength {\marginparwidth}{2cm}
+
+\begin{document}
+\frontmatter
+
+\input{titlepage}
+\input{frontmatter}
+
+\setcounter{tocdepth}{2}
+\tableofcontents
+\pagestyle{plain}
+
+\mainmatter
+
+\input{chapters/intro}
+%\appendix
+%\input{chapters/archive}
+
+\backmatter
+\chapter{References}
+\begingroup
+\raggedright
+\printbibliography[heading=none]
+\endgroup
+
+\ifoptiondraft{\listoftodos}
+
+\end{document}
