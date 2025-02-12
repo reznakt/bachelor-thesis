@@ -8,10 +8,7 @@
 				"nickfode.latex-formatter",
 				"tecosaur.latex-utilities",
 				"valentjn.vscode-ltex"
-			],
-			"settings": {
-				"terminal.integrated.shell.linux": "/bin/bash"
-			}
+			]
 		}
 	}
 }

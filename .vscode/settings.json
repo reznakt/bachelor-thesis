@@ -7,4 +7,5 @@
     "latex-workshop.latex.outDir": "build",
     "latex-workshop.synctex.afterBuild.enabled": true,
     "ltex.language": "en-US",
+    "editor.wordWrap": "on",
 }
