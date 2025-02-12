@@ -16,15 +16,24 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
-      - name: Compile LaTeX
+      - name: Compile final version
         uses: xu-cheng/latex-action@3.2.0
         with:
-          root_file: thesis.tex
-      - name: Upload PDF file
+          root_file: final.tex
+      - name: Compile printing version
+        uses: xu-cheng/latex-action@3.2.0
+        with:
+          root_file: printing.tex
+      - name: Upload final version
         uses: actions/upload-artifact@v4.6.0
         with:
-          name: thesis.pdf
-          path: thesis.pdf
+          name: final.pdf
+          path: final.pdf
+      - name: Upload printing version
+        uses: actions/upload-artifact@v4.6.0
+        with:
+          name: printing.pdf
+          path: printing.pdf
 
   deploy:
     needs: build
@@ -40,10 +49,16 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Import artifact
+      - name: Download final version
         uses: actions/download-artifact@v4.1.8
         with:
-          name: thesis.pdf
+          name: final.pdf
+          path: github-pages/
+
+      - name: Download printing version
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: printing.pdf
           path: github-pages/
 
       - name: Setup Pages

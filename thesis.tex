@@ -1,27 +1,23 @@
-\documentclass[11pt, a4paper, oneside, openany, draft]{book}
-
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
 \usepackage[english]{babel}
 
-\usepackage[usenames,dvipsnames]{xcolor}
-\usepackage{lmodern}
-\usepackage{enumitem}
-\usepackage{todonotes}
-\usepackage{setspace}
-\usepackage{csquotes}
-\usepackage{graphicx}
-\usepackage{amssymb,amsmath}
-\usepackage{mathtools}
-\usepackage{float}
 \usepackage[pass]{geometry}
-\usepackage{ifdraft}
-\usepackage{parskip}
-
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{algorithm}
+\usepackage{amssymb,amsmath}
 \usepackage{amsthm}
-
-\usepackage[Algoritmus]{algorithm}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{ifdraft}
+\usepackage{lmodern}
+\usepackage{mathtools}
+\usepackage{parskip}
+\usepackage{setspace}
+\usepackage[obeyFinal]{todonotes}
 
 \usepackage[ unicode=true,
              plainpages=false,
@@ -74,6 +70,6 @@
 \printbibliography[heading=none]
 \endgroup
 
-\ifoptiondraft{\listoftodos}
+\ifdraft{\listoftodos}
 
 \end{document}
