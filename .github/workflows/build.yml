@@ -1,0 +1,21 @@
+name: Build the thesis
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@3.2.0
+        with:
+          root_file: thesis.tex
+      - name: Upload PDF file
+        uses: actions/upload-artifact@v4.6.0
+        with:
+          name: PDF
+          path: thesis.pdf
