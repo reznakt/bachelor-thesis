@@ -4,6 +4,7 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
+				"EditorConfig.EditorConfig",
 				"james-yu.latex-workshop",
 				"nickfode.latex-formatter",
 				"tecosaur.latex-utilities",
