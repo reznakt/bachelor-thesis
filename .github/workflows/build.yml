@@ -18,18 +18,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
-      - name: Install Inkscape
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends inkscape
       - name: Compile final version
         uses: xu-cheng/latex-action@3.2.0
         with:
           root_file: final.tex
+          extra_system_packages: inkscape
       - name: Compile printing version
         uses: xu-cheng/latex-action@3.2.0
         with:
           root_file: printing.tex
+          extra_system_packages: inkscape
       - name: Upload final version
         uses: actions/upload-artifact@v4.6.0
         with:
