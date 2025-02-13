@@ -18,6 +18,6 @@
 	"latex-workshop.synctex.afterBuild.enabled": true,
 	"ltex.java.path": "/usr",
 	"ltex.language": "en-US",
-	"terminal.integrated.defaultProfile.linux": "bash",
-	"latex-workshop.latex.build.forceRecipeUsage": false,
+	"latex-workshop.latex.recipe.default": "latexmk (latexmkrc)",
+	"latex-workshop.message.error.show": false
 }

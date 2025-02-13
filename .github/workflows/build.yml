@@ -12,10 +12,16 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      DEBIAN_FRONTEND: noninteractive
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
+      - name: Install Inkscape
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends inkscape
       - name: Compile final version
         uses: xu-cheng/latex-action@3.2.0
         with:
