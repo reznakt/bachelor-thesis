@@ -1,6 +1,4 @@
 {
-	"name": "LaTeX Development",
-	"image": "texlive/texlive:latest",
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -11,5 +9,7 @@
 				"valentjn.vscode-ltex"
 			]
 		}
-	}
+	},
+	"image": "texlive/texlive:latest",
+	"name": "LaTeX Development"
 }
