@@ -1,6 +1,7 @@
 {
 	"editor.defaultFormatter": "nickfode.latex-formatter",
 	"editor.wordWrap": "on",
+	"explorer.excludeGitIgnore": true,
 	"files.autoSave": "afterDelay",
 	"latex-utilities.message.update.show": false,
 	"latex-workshop.formatting.latex": "tex-fmt",
