@@ -32,12 +32,12 @@ jobs:
         uses: actions/upload-artifact@v4.6.0
         with:
           name: final.pdf
-          path: final.pdf
+          path: build/final.pdf
       - name: Upload printing version
         uses: actions/upload-artifact@v4.6.0
         with:
           name: printing.pdf
-          path: printing.pdf
+          path: build/printing.pdf
 
   deploy:
     needs: build
