@@ -3,8 +3,9 @@
 
 \usepackage[english]{babel}
 
+\usepackage[dvipsnames]{xcolor}
+\usepackage[obeyFinal, shadow, loadshadowlibrary]{todonotes}
 \usepackage[pass]{geometry}
-\usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{algorithm}
 \usepackage{amssymb,amsmath}
 \usepackage{amsthm}
@@ -15,16 +16,16 @@
 \usepackage{ifdraft}
 \usepackage{lmodern}
 \usepackage{mathtools}
+\usepackage{microtype}
 \usepackage{parskip}
 \usepackage{setspace}
-\usepackage[obeyFinal]{todonotes}
 
-\usepackage[ unicode=true,
-             plainpages=false,
-             pdfpagelabels,
-             draft=false,
-             hyperfootnotes=false,
-             hidelinks,
+\usepackage[unicode=true,
+            plainpages=false,
+            pdfpagelabels,
+            draft=false,
+            hyperfootnotes=false,
+            hidelinks,
            ]{hyperref}
 
 \hypersetup{
@@ -40,9 +41,10 @@
            ]{biblatex}
 
 \addbibresource{bibliography.bib}
+\graphicspath{{./figures/}}
 
 \setlength{\tabcolsep}{6pt}
-\setlength {\marginparwidth}{2cm}
+\setlength{\marginparwidth}{2cm}
 
 \begin{document}
 \frontmatter
