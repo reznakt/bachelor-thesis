@@ -4,7 +4,6 @@
 	"explorer.excludeGitIgnore": true,
 	"files.autoSave": "afterDelay",
 	"latex-utilities.message.update.show": false,
-	"latex-workshop.formatting.latex": "tex-fmt",
 	"latex-workshop.intellisense.package.unusual": true,
 	"latex-workshop.latex.autoBuild.run": "onSave",
 	"latex-workshop.latex.build.rootfileInStatus": true,
