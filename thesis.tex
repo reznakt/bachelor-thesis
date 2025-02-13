@@ -19,14 +19,16 @@
 \usepackage{microtype}
 \usepackage{parskip}
 \usepackage{setspace}
+\usepackage[inkscapearea=page]{svg}
 
-\usepackage[unicode=true,
-            plainpages=false,
-            pdfpagelabels,
-            draft=false,
-            hyperfootnotes=false,
-            hidelinks,
-           ]{hyperref}
+\usepackage[
+	draft=false,
+	hidelinks,
+	hyperfootnotes=false,
+	pdfpagelabels,
+	plainpages=false,
+	unicode=true,
+]{hyperref}
 
 \hypersetup{
     pdfauthor={Tomáš Režňák},
@@ -34,14 +36,16 @@
     pdfsubject={Bachelor's Thesis}
 }
 
-\usepackage[backend=bibtex8,
-            sortlocale=en_US,
-            bibencoding=UTF8
-            maxnames=100
-           ]{biblatex}
+\usepackage[
+	backend=bibtex8,
+	bibencoding=UTF8,
+	maxnames=100,
+	sortlocale=en_US,
+]{biblatex}
 
 \addbibresource{bibliography.bib}
 \graphicspath{{./figures/}}
+\svgpath{{./figures/}}
 
 \setlength{\tabcolsep}{6pt}
 \setlength{\marginparwidth}{2cm}

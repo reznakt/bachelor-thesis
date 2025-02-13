@@ -1,4 +1,8 @@
 {
+	"name": "LaTeX Development",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -10,6 +14,6 @@
 			]
 		}
 	},
-	"image": "texlive/texlive:latest",
-	"name": "LaTeX Development"
+	"remoteUser": "user",
+	"containerUser": "user"
 }
