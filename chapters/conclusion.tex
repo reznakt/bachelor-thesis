@@ -1,1 +1,13 @@
-\chapter{Conclusion}
+\chapter{Conclusion}\label{chap:conclusion}
+
+In this paper, we have presented \textsc{svglab}, a new open-source Python toolkit for the programmatic manipulation of \gls{svg} documents.
+
+Containing the definitions of 80 \gls{svg} elements and 295 attributes, the library offers comprehensive compliance with the \gls{svg} 1.1 specification~\cite{svg11}, supporting all elements and attributes defined therein. 
+
+The library provides robust functionality for parsing, modifying, and writing SVG documents and a wide range of formatting options that can be used to format or optimize \gls{svg} documents. Additionally, the library contains advanced functionality such as reification, coordinate system rescaling, and calculation of element bounding boxes and segmentation masks.
+
+By leveraging type hints and the \textsc{Pydantic}~\cite{pydantic} validation library, our implementation offers both strong type safety and dynamic validation during runtime.
+
+We have shown that within the entire Python ecosystem, only one project comes close to matching the extensive functionality of \textsc{svglab}. Furthermore, our implementation is unparalleled in its comprehensive compliance with \gls{svg} specifications and further distinguishes itself by introducing novel solutions to existing limitations, such as support for shorthand path commands and customizable output formatting.
+
+Finally, we have outlined several possible directions for future work.

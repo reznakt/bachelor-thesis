@@ -1,51 +1,166 @@
+\documentclass[11pt, a4paper, oneside, openany, final]{book}
+
+\usepackage[l2tabu, orthodox]{nag}
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
-\usepackage[english]{babel}
+\usepackage[USenglish]{babel}
+\usepackage{microtype} 
 
 \usepackage[dvipsnames]{xcolor}
-\usepackage[obeyFinal, shadow, loadshadowlibrary]{todonotes}
+\usepackage[obeyDraft, shadow, loadshadowlibrary, textsize=footnotesize]{todonotes}
 \usepackage[pass]{geometry}
-\usepackage{algorithm}
-\usepackage{amssymb,amsmath}
+\usepackage{amsmath}
 \usepackage{amsthm}
-\usepackage{csquotes}
 \usepackage{enumitem}
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{ifdraft}
-\usepackage{lmodern}
 \usepackage{mathtools}
-\usepackage{microtype}
 \usepackage{parskip}
 \usepackage{setspace}
-\usepackage[inkscapearea=page]{svg}
+\usepackage{thmtools}
+\usepackage{minted}
+\usepackage{calc}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{interval}
+\usepackage{pifont}
+\usepackage{threeparttable}
+\usepackage{tabularx}
+\usepackage{footmisc}
+\usepackage[useregional]{datetime2}
+\usepackage{subcaption}
+\usepackage{comment}
+\usepackage{multirow}
+\usepackage{tabstackengine}
+\usepackage{longtable}
+\usepackage[labelfont=bf,textfont=md]{caption}
 
-\usepackage[
-	draft=false,
-	hidelinks,
-	hyperfootnotes=false,
-	pdfpagelabels,
-	plainpages=false,
-	unicode=true,
-]{hyperref}
+\counterwithout{footnote}{chapter}
+\counterwithout{footnote}{section}
 
-\hypersetup{
-    pdfauthor={Tomáš Režňák},
-    pdftitle={SVG Manipulation Library},
-    pdfsubject={Bachelor's Thesis}
+\begin{filecontents*}{\jobname.xmpdata}
+    \Title{A Manipulation Library for Scalable Vector Graphics}
+    \Author{Tomáš Režňák}
+    \Subject{Bachelor's Thesis}
+\end{filecontents*}
+
+\usepackage{morewrites}
+\usepackage[a-1b]{pdfx}
+
+\usepackage[bitstream-charter]{mathdesign}
+
+\let\point\bracketMatrixstack
+\let\vector\parenMatrixstack
+
+\DTMlangsetup[en-US]{abbr}
+
+\newenvironment{termdefs}{%
+  \begin{description}[
+    font=\normalfont\bfseries,
+    leftmargin=0cm,
+    labelindent=0pt,
+    itemsep=1em,
+    align=left,
+    labelwidth=1em,
+    labelsep=0pt
+  ]
+}{%
+  \end{description}
 }
 
+\newcommand{\termdef}[1]{%
+  \item[#1]
+  \mbox{}\par\nopagebreak
+}
+
+\newcommand{\picheckmark}{\ding{51}}
+\newcommand{\picrossmark}{\ding{55}}
+\newcommand{\picross}{\ding{61}}
+
+\intervalconfig{soft open fences}
+
+\newcommand{\pathcommand}[2]{\texttt{#1} (\textbf{#2})}
+
+\setminted{autogobble, escapeinside=§§, mathescape=true, breaklines, samepage}
+\newcommand{\py}[1]{\mintinline{python}{#1}}
+\newcommand{\xml}[1]{\mintinline{xml}{#1}}
+
+\usepackage{csquotes}
+
+\usepackage{tikz}
+\usetikzlibrary{
+    bbox,
+    arrows.meta,
+    automata,
+    positioning,
+    shapes.geometric,
+    calc,
+    bending,
+    matrix,
+    fit,
+    shapes,
+    backgrounds,
+    trees,
+    shapes.multipart,
+    svg.path
+}
+
+\declaretheorem[style=definition]{definition}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}{Lemma}[theorem]
+
+\hypersetup{
+	draft=false,
+    hidelinks,
+	unicode=true,
+    linktoc=all,
+    bookmarksdepth=2,
+    bookmarksnumbered,
+}
+\usepackage{footnotebackref}
+
+\usepackage[acronym, nogroupskip]{glossaries}
+
+\makeglossaries
+\newacronym{svg}{SVG}{Scalable Vector Graphics}
+\newacronym{ldu}{LDU}{Lower-Diagonal-Upper}
+\newacronym{xml}{XML}{Extensible Markup Language}
+\newacronym{ebnf}{EBNF}{Extended Backus–Naur Form}
+\newacronym{ide}{IDE}{Integrated Development Environment}
+\newacronym{dtd}{DTD}{Document Type Definition}
+\newacronym{css}{CSS}{Cascading Style Sheets}
+\newacronym{html}{HTML}{Hypertext Markup Language}
+\newacronym{bfs}{BFS}{Breadth-First Search}
+\newacronym{css4}{CSS4}{CSS Color Module Level 4}
+\newacronym{w3c}{W3C}{World Wide Web Consortium}
+\newacronym{sgml}{SGML}{Standard Generalized Markup Language}
+\newacronym{xslt}{XSLT}{Extensible Stylesheet Language Transformations}
+\newacronym{uri}{URI}{Uniform Resource Identifier}
+\newacronym{iri}{IRI}{Internationalized Resource Identifier}
+\newacronym{pep}{PEP}{Python Enhancement Proposal}
+\newacronym{pypi}{PyPi}{Python Package Index}
+\newacronym[longplural={Axis-Aligned Bounding Boxes}]{aabb}{AABB}{Axis-Aligned Bounding Box}
+\newacronym[longplural={Abstract Base Classes}]{abc}{ABC}{Abstract Base Class}
+\newacronym{ctm}{CTM}{Current Transformation Matrix}
+\newacronym{api}{API}{Application Programming Interface}
+\newacronym{cli}{CLI}{Command-Line Interface}
+
 \usepackage[
-	backend=bibtex8,
-	bibencoding=UTF8,
-	maxnames=100,
-	sortlocale=en_US,
+    backend=biber,
+    style=ieee,
+    citestyle=numeric-comp,
+    sorting=none,
+    backref=true
 ]{biblatex}
 
+\setlength\bibitemsep{\baselineskip}
 \addbibresource{bibliography.bib}
 \graphicspath{{./figures/}}
-\svgpath{{./figures/}}
 
 \setlength{\tabcolsep}{6pt}
 \setlength{\marginparwidth}{2cm}
@@ -56,18 +171,27 @@
 \input{titlepage}
 \input{frontmatter}
 
-\setcounter{tocdepth}{2}
-\tableofcontents
+\setcounter{tocdepth}{1}
+
 \pagestyle{plain}
+\tableofcontents
+\listoffigures
+\listoftables
+\printglossary[type=\acronymtype, title={List of Abbreviations}]
 
 \mainmatter
 
 \input{chapters/introduction}
-\input{chapters/theoretical-background}
-\input{chapters/analysis}
+\input{chapters/preliminaries}
+\input{chapters/requirements}
 \input{chapters/implementation}
-\input{chapters/testing}
+\input{chapters/evaluation}
+\input{chapters/future-work}
 \input{chapters/conclusion}
+\appendix
+\input{appendices/archive}
+\input{appendices/installation}
+\input{appendices/proofs-derivations}
 
 \backmatter
 \chapter{References}

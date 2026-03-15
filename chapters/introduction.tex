@@ -1,5 +1,22 @@
-\chapter{Introduction}
+\chapter{Introduction}\label{chap:introduction}
 
-This is a sentence.
+\gls{svg} has become the de facto standard for vector graphics on the Web and beyond, providing a convenient way to create images that maintain their quality at any size and are often smaller in file size than their raster counterparts.
 
-\includesvg{example-svg.svg}
+As with any other format, the need naturally arises to manipulate \gls{svg} documents programmatically, enabling the use of vector graphics in fields such as computer vision and data visualization.
+
+However, despite its widespread use, the Python ecosystem lacks a comprehensive and well-maintained library to manipulate SVG documents. In Section~\ref{sec:other-libs}, we provide a brief overview of existing software and show that only one of the surveyed libraries offers the functionality required to manipulate \gls{svg} documents.
+
+Our contribution is threefold:
+\begin{enumerate}
+    \item we analyze existing implementations and identify their shortcomings,
+    \item we design several novel approaches to solve these shortcomings, and, finally,
+    \item we present a new Python library for manipulating \gls{svg} documents, designed to focus on usability, correctness, and customizability.
+\end{enumerate}
+
+This paper assumes no prior experience with \gls{svg}. However, we presume that the reader has elementary knowledge of linear algebra, as well as the Python programming language and its ecosystem.
+
+The thesis is structured as follows. Chapter~\ref{chap:preliminaries} covers the preliminaries, including a brief introduction to \gls{svg} and relevant concepts from computer graphics and computer vision. Chapter~\ref{chap:requirements} provides an overview of the requirements for our library. In Chapter~\ref{chap:implementation}, we describe the implementation of the library and its architecture. In Chapter~\ref{chap:evaluation}, we present our efforts to verify the implementation and ensure its correctness, and compare our implementation with existing software in the field. In Chapter~\ref{chap:future-work}, we outline several directions for future work, and finally, we discuss the results in Chapter~\ref{chap:conclusion}.
+
+See Appendix~\ref{appx:source} for a summary of the contents of the digital thesis archive.
+
+We release all our code under the permissive MIT license for the benefit of the community. See Appendix~\ref{appx:installation} for more details and installation instructions.

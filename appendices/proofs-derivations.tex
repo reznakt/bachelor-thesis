@@ -1,0 +1,71 @@
+\chapter{Proofs and derivations}\label{appx:proofs-and-derivations}
+
+\begin{theorem}[Swapping the order of scale and skewX]
+     \[
+    \operatorname{scale}\left(s_x, s_y\right)\operatorname{skewX}(\alpha) = \operatorname{skewX}\left(\arctan\left(\frac{s_x}{s_y} \tan{\alpha}\right)\right)\operatorname{scale}\left(s_x, s_y\right)
+     \]
+\end{theorem}
+\begin{proof}
+   Consider the following two transformations:
+    \begin{align}
+        \operatorname{scale}\left(s_x, s_y\right)&\operatorname{skewX}(\alpha)\text{,} \\
+        \operatorname{skewX}\left(\beta\right)&\operatorname{scale}\left(s_x, s_y\right)\text{.}
+    \end{align}
+    Our goal is to find the value of $\beta$ for which the two transformations are equal. By the definitions of scale and skewX~\cite[Sec.~7.4]{svg11}, we have
+    \begin{align}
+        x' &= s_xx + s_yy\tan{\alpha}\hspace{1cm}\text{for }\operatorname{scale}\left(s_x, s_y\right)\operatorname{skewX}(\alpha)\text{,} \\
+        x' &= s_xx + s_xy\tan{\beta}\hspace{1cm}\text{for }\operatorname{skewX}\left(\beta\right)\operatorname{scale}\left(s_x, s_y\right)\text{.}
+    \end{align}
+    In both scenarios, $y' = y$; therefore, we will focus on the $x$ coordinate. By comparing both expressions, we obtain the following equation, which we solve for $\alpha$:
+    \begin{align}
+        s_xx + s_yy\tan{\alpha} &= s_xx + s_xy\tan{\beta} \\
+        s_y\tan{\alpha} &= s_x\tan{\beta} \\
+        \tan{\alpha} &= \frac{s_x}{s_y}\tan{\beta} \\
+        \alpha &= \arctan{\left(\frac{s_x}{s_y}\tan{\beta}\right)}
+    \end{align}
+
+    However, it is important to remember that in \gls{svg}, it is the \emph{coordinate system}, rather than the element, that is transformed~\cite[Sec.~7.4]{svg11}. Therefore, what we have, in fact, calculated is the new value of $\beta$ in terms of $\alpha$, as desired:
+    \[
+        \beta = \arctan{\left(\frac{s_x}{s_y}\tan{\alpha}\right)}\text{.}
+    \]
+\end{proof}
+
+The other identities described in Section~\ref{reordering-transformations} can be derived in the same manner.
+
+\begin{lemma}[Invariance of curve closure under affine transformations]\label{affine-closure}
+    Let $\gamma \colon \interval[scaled]{0}{1} \to \mathbb{R}^n$ be a parametric curve, and $T$ be an invertible affine transformation. $T \circ \gamma$ is closed if and only if $\gamma$ is closed.
+\end{lemma}
+
+\begin{proof}
+    First, assume $\gamma$ is closed. By definition, we have $\gamma(0) = \gamma(1)$. Applying $T$ to $\gamma(0)$ yields the following: 
+    \[     
+        T\left(\gamma(0)\right) = A\gamma(0) + \vec{b} = A\gamma(1) + \vec{b} = T\left(\gamma(1)\right) 
+    \]
+    
+    Because $T\left(\gamma(0)\right) = T\left(\gamma(1)\right)$, $T \circ \gamma$ is closed. Therefore, $\gamma$ is closed $\implies$ $T \circ \gamma$ is closed. 
+    
+    We will now approach the problem from the opposite direction. Suppose $T \circ \gamma$ is closed and thus $T\left(\gamma(0)\right) = T\left(\gamma(1)\right)$. Since $T$ is invertible, applying $T^{-1}$ to $T(\gamma(0))$ gives
+    \[
+        \underbrace{T^{-1}\left(T\left(\gamma(0)\right)\right)}_{\gamma(0)} = CT\left(\gamma(0)\right) + \vec{d} = CT\left(\gamma(1)\right) + \vec{d} = \underbrace{T^{-1}\left(T\left(\gamma(1)\right)\right)}_{\gamma(1)}
+    \]
+    we see that $\gamma(0) = \gamma(1)$, and therefore $\gamma$ is also closed. 
+    
+    We have shown that
+    \begin{itemize}
+        \item $\gamma$ is closed $\implies$ $T \circ \gamma$ is closed, and,
+        \item $\gamma$ is closed $\impliedby$ $T \circ \gamma$ is closed.
+    \end{itemize}
+    Therefore, $\gamma$ is closed $\iff$ $T \circ \gamma$ is closed, as desired.
+\end{proof}
+
+\begin{theorem}[Invariance of curve closure under compositions of affine transformations]\label{closed-path-composition}
+    Let $\gamma \colon \interval[scaled]{0}{1} \to \mathbb{R}^n$ be a parametric curve, and $\left\{T_i\right\}^n$ be a sequence of invertible affine transformations. Then
+    \[
+        T_1 \circ T_2 \circ \ldots \circ T_n \circ \gamma
+    \]
+    is closed if and only if $\gamma$ is closed.
+\end{theorem}
+
+\begin{proof}
+    Follows immediately from Lemma~\ref{affine-closure} and the fact that affine transformations are closed under composition~\cite[p.~34]{szeliski2022cv}
+\end{proof}

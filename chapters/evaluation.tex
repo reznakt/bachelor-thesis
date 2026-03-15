@@ -1,0 +1,132 @@
+\chapter{Evaluation}\label{chap:evaluation}
+
+\section{Testing}
+
+To ensure that our implementation meets the specified requirements and behaves as expected, we have created a test suite comprising various test cases designed to validate the functionality and prevent regression when refactoring or implementing new features. Although our test suite is not comprehensive, we aim to cover key functionality and areas with high risk of failure or complexity.
+
+Our test suite comprises over 250 distinct test cases and achieves approximately 82\% code coverage.
+
+\section{Comparison with existing software}\label{sec:other-libs}
+
+In this section, we compare our library, \textsc{svglab}, with existing software of similar functionality within the Python ecosystem.
+
+To obtain a list of candidates for comparison, we searched GitHub\footnote{\url{https://github.com/}} for projects that satisfy the following conditions\footnote{The search string representing these criteria is \texttt{"svg language:Python stars:>100"}.}:
+\begin{itemize}
+    \item the project is implemented in Python,
+    \item the project has accumulated at least one hundred stars,
+    \item the term \enquote{svg} appears in the project name, description, or list of topics.
+\end{itemize}
+
+These criteria ensure that the selected candidates are relevant. At the time of writing\footnote{\DTMdate{2025-04-22}.}, there are 79 repositories that meet these criteria.
+
+We subsequently conducted a manual inspection to filter out repositories not relevant to our work: only libraries where the primary purpose is the manipulation of SVG documents or their components were included\footnote{In particular, we excluded projects such as file format converters, renderers, machine learning projects, and projects where \gls{svg} is merely used as a format to represent output data.}. Of the 79 repositories, we identified eight suitable candidates for comparison.
+
+In table~\ref{tab:svg-libraries}, we present each project along with its official description, the number of stars, and the date of the last release or tag.
+
+\begin{table}[H]
+    \centering
+    
+    \begin{tabularx}{\textwidth}{lXcc}
+        \toprule
+        \textbf{Name} & \textbf{Description} & \textbf{Stars} & \textbf{Last Release} \\
+        \midrule
+        \textsc{drawsvg}~\cite{duck_drawsvg_2025} & \enquote{Programmatically generate \acrshort{svg} (vector) images, animations, and interactive Jupyter widgets} & 633 & \DTMdate{2024-06-23} \\
+        \textsc{svgpathtools}~\cite{svgpathtools} & \enquote{A collection of tools for manipulating and analyzing \acrshort{svg} Path objects and Bezier curves} & 581 & \DTMdate{2023-05-20} \\
+        \textsc{svgwrite}~\cite{mozman_svgwrite} & \enquote{Python Package to write SVG files} & 559 & \DTMdate{2022-07-14} \\
+        \textsc{svg\_utils}~\cite{telenczuk_svgutils_2021} & \enquote{Python tools to create and manipulate \acrshort{svg} files} & 320 & \DTMdate{2021-02-10} \\
+        \textsc{svg.py}~\cite{orsinium2021svgpy} & \enquote{Type-safe and powerful Python library to generate \acrshort{svg} files} & 308 & \DTMdate{2025-03-16} \\
+        \textsc{svg.path}~\cite{regebro2013svgpath} & \enquote{\acrshort{svg} path objects and parser} & 221 & \DTMdate{2025-02-27} \\
+        \textsc{svg\_stack}~\cite{straw2009svgstack} & \enquote{concatenate SVG files} & 169 & \DTMdate{2021-03-13} \\
+        \textsc{svgelements}~\cite{svgelements} & \enquote{\acrshort{svg} Parsing for Elements, Paths, and other \acrshort{svg} Objects} & 151 & \DTMdate{2023-08-17} \\
+        \bottomrule
+    \end{tabularx}
+
+    \vspace{0.3cm}
+    \caption{An overview of Python SVG manipulation libraries.}
+    \label{tab:svg-libraries}
+\end{table}
+
+Libraries \textsc{drawsvg}, \textsc{svgwrite}, and \textsc{svg.py} only support the programmatic \emph{creation} of \gls{svg} documents, but they do not possess \gls{svg} parsing capabilities~\cite{duck_drawsvg_2025, mozman_svgwrite, orsinium2021svgpy}.
+
+The \textsc{svg.path} project and its fork \textsc{svgpathtools} are specifically designed to parse, manipulate, and serialize \gls{svg} \emph{path data}, but lack support for other parts of \gls{svg}~\cite{regebro2013svgpath, svgpathtools}. However, compared to \textsc{svglab}, they provide a wider range of path-related functions such as calculating the arc length of a path or obtaining the coordinate of a point in a path based on the value of the parameter $t$ \cite{regebro2013svgpath, svgpathtools}.
+
+The \textsc{svg\_utils} and \textsc{svg\_stack} libraries offer an extremely minimalistic \gls{api} for \gls{svg} manipulation: they are primarily intended to concatenate existing \gls{svg} documents~\cite{telenczuk_svgutils_2021, straw2009svgstack}.
+
+Finally, the \textsc{svgelements} project contains functionality similar to \textsc{svglab}, offering a wide range of functionality related to \gls{svg} parsing, manipulation, and serialization~\cite{svgelements}. 
+
+\subsection{Comparison with \textsc{svgelements}}
+
+In this section, we provide an in-depth comparison between \textsc{svgelements} and \textsc{svglab}.
+
+To begin with, Table~\ref{tab:svglab-comparison} briefly summarizes some of the most important similarities and differences between the two libraries.
+
+\begin{longtable}{p{4cm}>{\centering\arraybackslash}p{3.5cm}>{\centering\arraybackslash}p{3.75cm}}
+    \caption{A comparison between \textsc{svgelements} and \textsc{svglab}.}
+    \label{tab:svglab-comparison} \\
+    \toprule
+    & \textbf{\textsc{svgelements}} & \textbf{\textsc{svglab}} \\
+    \midrule
+    \endfirsthead
+
+    \toprule
+    & \textbf{\textsc{svgelements}} & \textbf{\textsc{svglab}} \\
+    \midrule
+    \endhead
+
+    \midrule
+    \multicolumn{3}{r}{\footnotesize{\textit{Continued on the next page.}}} \\
+    \midrule
+    \endfoot
+
+    \bottomrule
+    \endlastfoot
+
+    \acrshort{svg} parsing & \picheckmark & \picheckmark \\
+    \acrshort{svg} manipulation & \picheckmark & \picheckmark \\
+    \acrshort{svg} writing & \picheckmark & \picheckmark \\
+    \acrshort{svg} optimization & \picrossmark & Basic (via formatting options) \\
+    Lossless parsing and serialization & \picrossmark & \picheckmark \\
+    Formatting options & Basic & Highly-configurable \\
+    \midrule
+    \acrshort{xml} entities & Text (limited support) & Text, CDATA sections, comments \\
+    \acrshort{svg} 1.1 support & Partial & Full \\
+    \acrshort{svg} 2 support & Partial & Partial \\
+    Support for other \acrshort{svg} versions & \picrossmark & \picrossmark \\
+    \acrshort{css} support & \picheckmark & \picrossmark \\
+    \midrule
+    Reification & \picheckmark & \picheckmark \\
+    Bounding box & \picheckmark & \picheckmark \\
+    Mask & \picrossmark & \picheckmark \\
+    Rendering & \picrossmark & via \textsc{resvg}~\cite{resvg} \\
+    Path operations & Comprehensive & Basic \\
+    Shorthand\slash smooth path commands & \picrossmark & \picheckmark \\
+    Closepath command & \picrossmark & \picheckmark \\
+    Gradients & \picrossmark & \picheckmark \\
+    Clipping paths & \picheckmark & \picheckmark \\
+    Animations & \picrossmark & \picheckmark \\
+    \midrule
+    Typed & \picheckmark & \picheckmark \\
+    Runtime validation & \picrossmark & \picheckmark \\
+    Python compatibility & $\geq$ 3 & $\geq$ 3.10 \\
+    Top-level dependencies & 0 & 14 \\
+    License & MIT & MIT \\
+\end{longtable}
+
+Perhaps the greatest difference between the two libraries lies directly in their general focus.
+
+\textsc{svglab} is primarily focused on \emph{lossless manipulation} of \gls{svg} documents: the goal is to parse an \gls{svg} document, provide the user with the means to manipulate a part of it, and then serialize the document back to its original representation. In particular, the library strives to preserve the original semantics of the document where possible (unless the user explicitly changes them by manipulation).
+
+In contrast, \textsc{svgelements}' primary focus is on \emph{extracting} geometric information from \gls{svg} documents:
+\begin{quote}
+    \itshape
+    \setlength{\rightmargin}{\leftmargin}
+    {\Large\textbf{``}} The goal is to successfully and correctly process SVG for use with any scripts that may need or want to use SVG files as geometric data.{\Large\textbf{''}}
+    \upshape
+    \item[]\mbox{}\hfill--- \textsc{svgelements}~\cite{svgelements}
+\end{quote}
+
+Instead of relaying the semantics of the document and the original intent of the document's author directly to the user, the library attempts to simplify the document by techniques such as automatic reification upon parsing or resolving embedded images. This is done to make the document easier to work with, with the assumption that the user does not care about the actual \gls{svg} content, but rather the geometric information it contains.
+
+\textsc{svgelements}' subsystem for paths is based on \textsc{svg.path} and \textsc{svgpathtools} and thus offers similar functionality~\cite{svgelements}.
+
+\textsc{svgelements}' compliance with the \gls{svg} specification is very limited, and the library supports only a handful of the elements and attributes defined by the specification.

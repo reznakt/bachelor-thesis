@@ -1,0 +1,77 @@
+\chapter{Requirements}\label{chap:requirements}
+
+This chapter lists some of the most significant requirements for implementing the library, most of which stem directly from the thesis assignment.
+
+We generally prioritize features related to transformations or computer vision (for instance, reification, computing bounding boxes and masks, and applying transformations to elements). On the other hand, little emphasis is put on performance or dependency count.
+
+\section{Programming language}
+
+The library is developed using Python and is compatible with \textsc{CPython}~\cite{python-downloads} versions 3.12 and above.
+
+\section{Representation and I/O}
+
+The library provides robust parsing support for \gls{svg} documents. Documents created programmatically can be serialized back to the original \gls{xml} format. The library can parse any \emph{well-formed} (syntactically valid) \gls{svg} document.
+
+The \gls{svg} document is represented using a tree data structure. The library parses attribute values into Python objects where appropriate and feasible to facilitate convenient and straightforward use. These objects are designed to express the values of the specified attribute type in an idiomatic way.
+
+\section{Robust typing}
+
+The library is fully typed using Python type hints according to \gls{pep} 484~\cite{pep484typehints}. In particular, the library provides robust typing for all supported \gls{svg} elements and attributes.
+
+\section{Configurable formatting}
+
+The library provides several methods for modifying the format of serialized \gls{svg} code.
+
+\subsection{Color format}
+
+Various formats are available in \gls{svg} for defining colors. The library allows the user to choose one format to apply consistently for all color values in the output.
+
+\subsection{Floating-point precision}
+
+The library supports configuring the maximum number of digits for serializing numbers.
+
+\subsection{Path data}
+
+The library allows for configuring whether path data commands appear implicitly (where possible) or explicitly in the serialized output. In addition, users can specify whether absolute or relative path commands are used.
+
+\subsection{Whitespace}
+
+The library supports configuring how whitespace occurs in the output. At a minimum, the library supports configuring the number of spaces used for indentation.
+
+\section{Compliance with SVG specifications}
+
+The library supports all elements and attributes defined in \gls{svg}~1.1~\cite{svg11} and can correctly and without errors manipulate all documents that conform to that specification.
+
+\section{Lossless parsing and serialization}
+
+Semantically significant data is not lost when a document is parsed and subsequently serialized. However, there may be modifications in syntax, such as whitespace changes or the use of alternative syntax to represent identical information.
+
+The library accommodates additional elements and attributes beyond those specified in~\cite{svg11} to enhance flexibility. Nevertheless, the level of support for these custom elements and attributes is limited; the library does not contain typed definitions for said elements and attributes, and the attribute values are not parsed into native types.
+
+\section{Manipulation}
+
+It is possible to manipulate parsed \gls{svg} documents. This includes modifying attributes, adding and removing elements, and applying affine transformations to shapes where possible.
+
+\section{Reification}
+
+As we have described in Section~\ref{theo:transformations}, arbitrary affine transformations can be applied to elements using the \texttt{transform} attribute. However, relying heavily on the use of the \texttt{transform} attribute can lead to complex and lengthy transformation lists, resulting in large file sizes and difficulty in editing.
+
+A potential optimization involves directly applying the transformations inside the \texttt{transform} attribute to the element's attributes, eliminating the need for the attribute. This process is known as \emph{reification}~\cite{svgelements}.
+
+The library supports reifying translation and scaling transformations defined by the \texttt{transform} attribute. The library may allow the reification of other transformations if possible.
+
+\section{Coordinate system rescaling}
+
+Coordinates and lengths are commonly expressed in \emph{user units} (without a unit) in \gls{svg}. When done so, their values depend on the size of the viewbox.
+
+If the size of the viewbox is selected poorly, the coordinate and length values used in the document may have unnecessarily low or high magnitudes. This can contribute to large file sizes and complexity. 
+
+The library supports rescaling the coordinate system to more manageable dimensions.
+
+\section{Bounding boxes}
+
+The library can calculate an element's bounding box and visible bounding box.
+
+\section{Masks}
+
+The library can calculate an element's mask and visible mask.

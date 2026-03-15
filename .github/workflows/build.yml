@@ -12,32 +12,22 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      DEBIAN_FRONTEND: noninteractive
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.2.2
-      - name: Compile final version
-        uses: xu-cheng/latex-action@3.2.0
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+
+      - name: Build thesis PDF
+        run: nix build --print-build-logs
+
+      - name: Upload thesis PDF
+        uses: actions/upload-artifact@v4
         with:
-          root_file: final.tex
-          extra_system_packages: inkscape
-      - name: Compile printing version
-        uses: xu-cheng/latex-action@3.2.0
-        with:
-          root_file: printing.tex
-          extra_system_packages: inkscape
-      - name: Upload final version
-        uses: actions/upload-artifact@v4.6.0
-        with:
-          name: final.pdf
-          path: build/final.pdf
-      - name: Upload printing version
-        uses: actions/upload-artifact@v4.6.0
-        with:
-          name: printing.pdf
-          path: build/printing.pdf
+          name: thesis.pdf
+          path: result/thesis.pdf
 
   deploy:
     needs: build
@@ -53,26 +43,20 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Download final version
-        uses: actions/download-artifact@v4.1.8
+      - name: Download thesis PDF
+        uses: actions/download-artifact@v4
         with:
-          name: final.pdf
-          path: github-pages/
-
-      - name: Download printing version
-        uses: actions/download-artifact@v4.1.8
-        with:
-          name: printing.pdf
+          name: thesis.pdf
           path: github-pages/
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5.0.0
+        uses: actions/configure-pages@v5
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3.0.1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: github-pages/
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4.0.5
+        uses: actions/deploy-pages@v4

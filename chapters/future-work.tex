@@ -1,0 +1,25 @@
+\chapter{Future work}\label{chap:future-work}
+
+Despite our efforts described in Chapter~\ref{chap:implementation}, we consider our implementation to be far from feature-complete. Therefore, we suggest several possible directions for future work.
+
+\section{CSS support}
+
+In \gls{svg}, elements can be styled using \gls{css}. \gls{css} properties have the same name as the corresponding \gls{svg} attributes and typically have the same syntax, but may occasionally offer more powerful functionality~\cite{svg11}. For this reason, we consider it valuable to implement proper support for parsing, manipulating, and serializing \gls{css} embedded in \gls{svg}.
+
+\section{Optimization support}
+
+Our implementation already provides a basic means of optimizing \gls{svg} documents using formatting options, reification, and rescaling of the coordinate system. However, these features need to be used manually, and the results strongly depend on the options used.
+
+To address this limitation, we propose developing a clear and unified interface that would allow automatic optimization of \gls{svg} documents based on the application of various optimization techniques.
+
+Along with this change, it is naturally desirable to extend our current set of optimization procedures with, for example, some of the following advanced techniques:
+\begin{itemize}
+    \item removing unused definitions,
+    \item removing redundant attributes,
+    \item removing invisible elements,
+    \item simplifying and approximating path data,
+    \item converting between basic shapes and their equivalent path representation (whichever is shorter),
+    \item composing transformations in a transformation list into a single \texttt{matrix()} form.
+\end{itemize}
+
+We believe that the proposed changes would bring the library in line with other \gls{svg} optimization software, such as the popular \textsc{svgo}~\cite{svgo} project.
