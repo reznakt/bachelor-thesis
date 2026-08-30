@@ -36,6 +36,7 @@
             fvextra
             geometry
             glossaries
+            glossaries-english
             graphics
             interval
             latexmk
