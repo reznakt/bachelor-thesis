@@ -22,6 +22,7 @@
             babel
             biber
             biblatex
+            biblatex-ieee
             booktabs
             caption
             comment
@@ -53,6 +54,7 @@
             stackengine
             tabstackengine
             threeparttable
+            tikz-bbox
             todonotes
             upquote
             xcolor
@@ -78,7 +80,7 @@
             SOURCE_DATE_EPOCH = 0;
 
             buildPhase = ''
-              latexmk -f thesis.tex || true
+              latexmk thesis.tex
             '';
 
             installPhase = ''
