@@ -3,11 +3,11 @@ name: Build the thesis and deploy on GitHub Pages
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 jobs:
   build:
@@ -15,22 +15,29 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install Nix
-        uses: cachix/install-nix-action@v27
+        uses: cachix/install-nix-action@v31
 
       - name: Build thesis PDF
         run: nix build --print-build-logs
 
       - name: Upload thesis PDF
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: thesis.pdf
           path: result/thesis.pdf
 
   deploy:
     needs: build
+
+    # Pages can only be published from the default branch
+    if: github.event_name == 'push'
+
+    permissions:
+      pages: write
+      id-token: write
 
     concurrency:
       group: "pages"
@@ -44,19 +51,19 @@ jobs:
 
     steps:
       - name: Download thesis PDF
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: thesis.pdf
           path: github-pages/
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: github-pages/
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
