@@ -5,11 +5,11 @@ This chapter introduces the essential concepts and terminology referenced in the
 \section{Extensible Markup Language (XML)}\label{sec:xml}
 
 \gls{xml} is a markup language and file format designed to store structured data.
-It is regarded as an \emph{application} (a subset) of \gls{sgml}, an earlier markup language~\cite[Sec. 1.1]{xml11}.
+It is regarded as an \emph{application} (a subset) of \gls{sgml}, an earlier markup language~\cite[Sec.~1.1]{xml11}.
 
-It was designed to facilitate the straightforward transfer of documents over the Internet~\cite[Sec. 1.1]{xml11}. The format features a human-readable structure, with relatively little effort required to implement \gls{xml} parsers~\cite[Sec. 1.1]{xml11}.
+It was designed to facilitate the straightforward transfer of documents over the Internet~\cite[Sec.~1.1]{xml11}. The format features a human-readable structure, with relatively little effort required to implement \gls{xml} parsers~\cite[Sec.~1.1]{xml11}.
 
-An \gls{xml} document is made up of \emph{entities}, which form an \emph{entity tree}~\cite[Sec. 2]{xml11}.
+An \gls{xml} document is made up of \emph{entities}, which form an \emph{entity tree}~\cite[Sec.~2]{xml11}.
 
 In the rest of this section, we will cover the most important concepts found in \gls{xml}.
 
@@ -37,14 +37,14 @@ CDATA sections can be useful for embedding \gls{css} or JavaScript source code i
 
 \subsection{Comments}
 
-Comments are strings of text that do not affect the document semantics~\cite[Sec. 2.5]{xml11}. They are typically used for documentation purposes. A comment starts with \texttt{<!-{}-} and ends with \texttt{-{}->}~\cite[Sec. 2.5]{xml11}. Comments cannot be nested and may be discarded by the parser~\cite[Sec. 2.5]{xml11}. As an example, consider the following \gls{xml} comment:
+Comments are strings of text that do not affect the document semantics~\cite[Sec.~2.5]{xml11}. They are typically used for documentation purposes. A comment starts with \texttt{<!-{}-} and ends with \texttt{-{}->}~\cite[Sec.~2.5]{xml11}. Comments cannot be nested and may be discarded by the parser~\cite[Sec.~2.5]{xml11}. As an example, consider the following \gls{xml} comment:
 \begin{minted}{xml}
     <!-- This is a comment. -->
 \end{minted}
 
 \subsection{Elements}
 
-Elements are perhaps the most essential building blocks of \gls{xml}. An element is characterized by its name, which specifies its type~\cite[Sec. 3]{xml11}. An element may be \emph{empty}, in which case we call it an \emph{empty element}, or may contain other elements as \emph{children}~\cite[Sec. 3]{xml11}. An element may also optionally contain a set of \emph{attributes}~\cite[Sec. 3]{xml11}. Elements are denoted by \emph{tags}~\cite[Sec. 3]{xml11}. As an example, we provide the following code snippet:
+Elements are perhaps the most essential building blocks of \gls{xml}. An element is characterized by its name, which specifies its type~\cite[Sec.~3]{xml11}. An element may be \emph{empty}, in which case we call it an \emph{empty element}, or may contain other elements as \emph{children}~\cite[Sec.~3]{xml11}. An element may also optionally contain a set of \emph{attributes}~\cite[Sec.~3]{xml11}. Elements are denoted by \emph{tags}~\cite[Sec.~3]{xml11}. As an example, we provide the following code snippet:
 \begin{minted}{xml}
     <g>
         <rect width="10" height="20" />
@@ -54,7 +54,7 @@ Elements are perhaps the most essential building blocks of \gls{xml}. An element
 \subsection{Tags}
 
 \begin{samepage}
-Tags encompass elements~\cite[Sec. 3]{xml11}. There are three types of tags~\cite[Sec. 3]{xml11}:
+Tags encompass elements~\cite[Sec.~3]{xml11}. There are three types of tags~\cite[Sec.~3]{xml11}:
 \begin{itemize}
     \item \emph{start-tag}: \xml{<name>},
     \item \emph{end-tag}: \xml{</name>},
@@ -64,18 +64,18 @@ Tags encompass elements~\cite[Sec. 3]{xml11}. There are three types of tags~\cit
 
 \subsection{Attributes}
 
-Attributes are key-value pairs associated with an element~\cite[Sec. 3.3]{xml11}. Each attribute name has a corresponding data type and, optionally, a default value~\cite[Sec. 3.3]{xml11}. Attributes carry the form \xml{name="value"}~\cite[Sec. 3.3]{xml11}.
+Attributes are key-value pairs associated with an element~\cite[Sec.~3.3]{xml11}. Each attribute name has a corresponding data type and, optionally, a default value~\cite[Sec.~3.3]{xml11}. Attributes carry the form \xml{name="value"}~\cite[Sec.~3.3]{xml11}.
 
 \section{Scalable Vector Graphics (SVG)}\label{theo:svg}
 
-\gls{svg} is an \gls{xml}-based file format for describing two-dimensional graphics~\cite[Sec. 1.1]{svg11}. Although the typical use of \gls{svg} is to create vector graphics, \gls{svg} documents can also include text and raster images~\cite[Sec.~2]{svg11}. \gls{svg} was designed and is currently maintained by the \gls{w3c}~\cite{svg11, svg2, svg2-draft}. A recent analysis indicates that more than 60~\% of all websites on the Internet use \gls{svg} to store image content, showing its widespread use~\cite{imageformats}.
+\gls{svg} is an \gls{xml}-based file format for describing two-dimensional graphics~\cite[Sec.~1.1]{svg11}. Although the typical use of \gls{svg} is to create vector graphics, \gls{svg} documents can also include text and raster images~\cite[Sec.~2]{svg11}. \gls{svg} was designed and is currently maintained by the \gls{w3c}~\cite{svg11, svg2, svg2-draft}. A recent analysis indicates that more than 60\% of all websites on the Internet use \gls{svg} to store image content, showing its widespread use~\cite{imageformats}.
 
 \gls{svg} is an application of \gls{xml} and, as such, consists of the same entities as described in Section~\ref{sec:xml}.
 
 In \gls{svg}, elements are used to represent graphical objects. The list of elements defined in the \gls{svg} specification~\cite{svg11} includes, but is not limited to:
 \begin{itemize}
     \item \texttt{<g>}: used to group other elements,
-    \item \texttt{<rect>}, \texttt{<circle>}, \texttt{<ellipse>}, and other: elementary geometric shapes,
+    \item \texttt{<rect>}, \texttt{<circle>}, \texttt{<ellipse>}, and others: elementary geometric shapes,
     \item \texttt{<svg>}: the root element of every \gls{svg} document,
     \item \texttt{<defs>} and \texttt{<use>}: used to create a single definition of an element (in \texttt{<defs>}) and use it in several places at once (with \texttt{<use>}),
     \item \texttt{<linearGradient>}, \texttt{<radialGradient>}, and \texttt{<pattern>}: used to create complex gradients and patterns that may be subsequently used, for instance, to fill a shape,
@@ -182,7 +182,7 @@ A common and simple \emph{shape} that is predefined for convenience as an elemen
     \item \texttt{<ellipse>}: an ellipse,
     \item \texttt{<line>}: a line segment,
     \item \texttt{<polyline>}: a series of connected line segments,
-    \item \texttt{<polygon>} a series of connected line segments that form a closed shape.
+    \item \texttt{<polygon>}: a series of connected line segments that form a closed shape.
 \end{itemize}
 
 \subsection{Shape}
@@ -195,7 +195,7 @@ A graphics element in \gls{svg} is any element that causes graphics to be drawn 
 
 \subsection{Paths}
 
-Paths are perhaps the most important building block of \gls{svg}. They allow one to create arbitrarily complex shapes using a simple set of commands. All basic shapes in \gls{svg} can be converted into equivalent path elements \cites[Chap.~10]{svg2}{aleen42_shape_to_path, wichmann_decomposition_basic_svg}.
+Paths are perhaps the most important building block of \gls{svg}. They allow one to create arbitrarily complex shapes using a simple set of commands. All basic shapes in \gls{svg} can be converted into equivalent path elements~\cites[Chap.~10]{svg2}{aleen42_shape_to_path, wichmann_decomposition_basic_svg}.
 
 Paths in \gls{svg} are based on the concept of a virtual \enquote{pen} that moves around the canvas and draws lines and curves to produce the desired shape~\cite[Sec.~8.1]{svg11}. A path is defined by its \emph{path data}: a sequence of elementary drawing operations called \emph{path commands} that describe how the pen moves~\cite[Sec.~8.1]{svg11}. The path commands available in \gls{svg} are listed in Table~\ref{tab:path-commands-theory}~\cite[Sec.~8.3]{svg11}.
 
@@ -373,7 +373,7 @@ or using one of the predefined \emph{transformation functions}; they are~\cite[S
 \begin{itemize}
     \item $\operatorname{translate}\left(t_x, t_y\right)$: translation by $t_x$ on the $x$-axis and $t_y$ on the $y$-axis,
     \item $\operatorname{scale}\left(s_x, s_y\right)$: scaling by $s_x$ along the $x$-axis and $s_y$ along the $y$-axis; if $s_x = s_y$, we say that the scaling is \emph{uniform} (otherwise, we say it is \emph{non-uniform}),
-    \item $\operatorname{rotate}\left(\alpha, c_x, c_y\right)$: couter-clockwise rotation by $\alpha$ degrees around the point $\point{c_x, c_y}$,
+    \item $\operatorname{rotate}\left(\alpha, c_x, c_y\right)$: counter-clockwise rotation by $\alpha$ degrees around the point $\point{c_x, c_y}$,
     \item $\operatorname{skewX}\left(\alpha\right)$: skewing by the angle $\alpha$ along the $x$-axis,
     \item $\operatorname{skewY}\left(\alpha\right)$: skewing by the angle $\alpha$ along the $y$-axis.
 \end{itemize}

@@ -19,9 +19,9 @@ To obtain a list of candidates for comparison, we searched GitHub\footnote{\url{
 
 These criteria ensure that the selected candidates are relevant. At the time of writing\footnote{\DTMdate{2025-04-22}.}, there are 79 repositories that meet these criteria.
 
-We subsequently conducted a manual inspection to filter out repositories not relevant to our work: only libraries where the primary purpose is the manipulation of SVG documents or their components were included\footnote{In particular, we excluded projects such as file format converters, renderers, machine learning projects, and projects where \gls{svg} is merely used as a format to represent output data.}. Of the 79 repositories, we identified eight suitable candidates for comparison.
+We subsequently conducted a manual inspection to filter out repositories not relevant to our work: only libraries where the primary purpose is the manipulation of \gls{svg} documents or their components were included\footnote{In particular, we excluded projects such as file format converters, renderers, machine learning projects, and projects where \gls{svg} is merely used as a format to represent output data.}. Of the 79 repositories, we identified eight suitable candidates for comparison.
 
-In table~\ref{tab:svg-libraries}, we present each project along with its official description, the number of stars, and the date of the last release or tag.
+In Table~\ref{tab:svg-libraries}, we present each project along with its official description, the number of stars, and the date of the last release or tag.
 
 \begin{table}[H]
     \centering
@@ -48,7 +48,7 @@ In table~\ref{tab:svg-libraries}, we present each project along with its officia
 
 Libraries \textsc{drawsvg}, \textsc{svgwrite}, and \textsc{svg.py} only support the programmatic \emph{creation} of \gls{svg} documents, but they do not possess \gls{svg} parsing capabilities~\cite{duck_drawsvg_2025, mozman_svgwrite, orsinium2021svgpy}.
 
-The \textsc{svg.path} project and its fork \textsc{svgpathtools} are specifically designed to parse, manipulate, and serialize \gls{svg} \emph{path data}, but lack support for other parts of \gls{svg}~\cite{regebro2013svgpath, svgpathtools}. However, compared to \textsc{svglab}, they provide a wider range of path-related functions such as calculating the arc length of a path or obtaining the coordinate of a point in a path based on the value of the parameter $t$ \cite{regebro2013svgpath, svgpathtools}.
+The \textsc{svg.path} project and its fork \textsc{svgpathtools} are specifically designed to parse, manipulate, and serialize \gls{svg} \emph{path data}, but lack support for other parts of \gls{svg}~\cite{regebro2013svgpath, svgpathtools}. However, compared to \textsc{svglab}, they provide a wider range of path-related functions such as calculating the arc length of a path or obtaining the coordinate of a point in a path based on the value of the parameter $t$~\cite{regebro2013svgpath, svgpathtools}.
 
 The \textsc{svg\_utils} and \textsc{svg\_stack} libraries offer an extremely minimalistic \gls{api} for \gls{svg} manipulation: they are primarily intended to concatenate existing \gls{svg} documents~\cite{telenczuk_svgutils_2021, straw2009svgstack}.
 
@@ -86,7 +86,7 @@ To begin with, Table~\ref{tab:svglab-comparison} briefly summarizes some of the 
     \acrshort{svg} writing & \picheckmark & \picheckmark \\
     \acrshort{svg} optimization & \picrossmark & Basic (via formatting options) \\
     Lossless parsing and serialization & \picrossmark & \picheckmark \\
-    Formatting options & Basic & Highly-configurable \\
+    Formatting options & Basic & Highly configurable \\
     \midrule
     \acrshort{xml} entities & Text (limited support) & Text, CDATA sections, comments \\
     \acrshort{svg} 1.1 support & Partial & Full \\

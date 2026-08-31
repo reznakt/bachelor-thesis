@@ -2,7 +2,7 @@
 
 In this chapter, we describe the main output of this thesis: \textsc{svglab}, a comprehensive Python library for programmatic manipulation of \gls{svg} documents.
 
-The chapter is structured as follows. In Section~\ref{impl:overview}, we provide a brief general overview of the implementation. In Section~\ref{impl:representation}, we describe how the \gls{svg} entities are represented in the library. The parsing and serialization processes are described in Section~\ref{impl:parsing} and Section~\ref{impl:serialization}, respectively. In Section~\ref{reify}, we present our solution to the problem of reification. In Section~\ref{impl:rescaling}, we briefly talk about how we support the rescaling of the coordinate system. Finally, we outline our approach to the calculation of bounding boxes and masks in Section \ref{impl:bbox-mask}.
+The chapter is structured as follows. In Section~\ref{impl:overview}, we provide a brief general overview of the implementation. In Section~\ref{impl:representation}, we describe how the \gls{svg} entities are represented in the library. The parsing and serialization processes are described in Section~\ref{impl:parsing} and Section~\ref{impl:serialization}, respectively. In Section~\ref{reify}, we present our solution to the problem of reification. In Section~\ref{impl:rescaling}, we briefly talk about how we support the rescaling of the coordinate system. Finally, we outline our approach to the calculation of bounding boxes and masks in Section~\ref{impl:bbox-mask}.
 
 \section{Overview}\label{impl:overview}
 
@@ -13,7 +13,7 @@ The \textsc{svglab} library is designed as a single Python package of the same n
 
 The package is compatible with \textsc{CPython}~\cite{python-downloads} versions 3.10 and higher.
 
-The library is designed to comply with the SVG~1.1 specification~\cite{svg11}, supporting all elements and attributes defined thereby. Furthermore, we have incorporated various advantageous features from SVG~2~\cite{svg2} and the SVG~2 Editor's Draft~\cite{svg2-draft}, such as:
+The library is designed to comply with the \gls{svg}~1.1 specification~\cite{svg11}, supporting all elements and attributes defined therein. Furthermore, we have incorporated various advantageous features from \gls{svg}~2~\cite{svg2} and the \gls{svg}~2 Editor's Draft~\cite{svg2-draft}, such as:
 \begin{itemize}
     \item the \texttt{pathLength} attribute, present on all basic shapes,
     \item the \texttt{transform-origin} attribute\footnote{See Section~\ref{transform-origin-reify} for more details.}.
@@ -27,7 +27,7 @@ In this section, we describe how our library represents \gls{svg} entities.
 
 Our implementation is capable of representing all types of \gls{svg} entities, ensuring the ability to manipulate \gls{svg} documents in their entirety and that no data is lost between parsing and serialization.
 
-We utilize an object-oriented approach, where each entity type is represented as a class and each entity as an object. We use the \textsc{pydantic}~\cite{pydantic} validation library to construct these classes. This design choice allows us to take advantage of \textsc{pydantic}'s parsing and validation capabilities.
+We utilize an object-oriented approach, where each entity type is represented as a class and each entity as an object. We use the \textsc{Pydantic}~\cite{pydantic} validation library to construct these classes. This design choice allows us to take advantage of \textsc{Pydantic}'s parsing and validation capabilities.
 
 In Figure~\ref{fig:svg-representation}, we show example \gls{svg} code and its \textsc{svglab} representation.
 
@@ -240,8 +240,8 @@ In this section, we will describe our approach to representing standard attribut
 
 For the \texttt{length} and \texttt{angle} types, we provide the \texttt{Length} and \texttt{Angle} classes, respectively. Both classes provide comparable functionality and have a similar interface. The classes contain the following attributes:
 \begin{itemize}
-    \item \texttt{value}: the floating-point value of the quantity (length or angle), e.g. \texttt{45},
-    \item \texttt{unit}: the unit associated with the quantity, e.g. \texttt{"deg"}.
+    \item \texttt{value}: the floating-point value of the quantity (length or angle), e.g., \texttt{45},
+    \item \texttt{unit}: the unit associated with the quantity, e.g., \texttt{"deg"}.
 \end{itemize}
 
 The classes also define a \texttt{to(unit)} method which returns a new object of the same type, but with the value converted to the specified unit. If conversion is not possible, an exception is raised.
@@ -303,7 +303,7 @@ We represent each type of \gls{svg} transformation using an associated class. Th
 Instances of each class can be converted to equivalent instances of type \texttt{Matrix} using the \texttt{to\_matrix()} method:
 \begin{minted}{python}
     t = Translate(1, 2)
-    m = t.to_matrix()  # Matrix(0, 0, 0, 0, 1, 2)
+    m = t.to_matrix()  # Matrix(1, 0, 0, 1, 1, 2)
 \end{minted}
 
 Transformations may be composed using the matrix multiplication operator (@):
@@ -375,7 +375,7 @@ By default, command coordinates are interpreted as absolute. However, the user m
 
 The \pathcommand{ClosePath}{Z} command deserves particular attention---it is the only command that requires no parameters and thus requires specialized handling.
 
-Existing libraries (such as \textsc{svgpathtools} \cite{svgpathtools}) sometimes implement this feature by treating the command as if it were a line. When the user manipulates the path containing the said command and subsequently attempts to serialize it, the library outputs \textbf{Z} if the endpoint of the \pathcommand{LineTo}{L} command coincides with the starting point of the path, \textbf{L} otherwise. This approach produces incorrect results (see Figure~\ref{fig:close-path-incorrect}) because the information on whether the path is closed is irrevocably lost during this conversion.
+Existing libraries (such as \textsc{svgpathtools}~\cite{svgpathtools}) sometimes implement this feature by treating the command as if it were a line. When the user manipulates the path containing the said command and subsequently attempts to serialize it, the library outputs \textbf{Z} if the endpoint of the \pathcommand{LineTo}{L} command coincides with the starting point of the path, \textbf{L} otherwise. This approach produces incorrect results (see Figure~\ref{fig:close-path-incorrect}) because the information on whether the path is closed is irrevocably lost during this conversion.
 
 To avoid this issue, we instead represent the command as is, using a dedicated class. We can use this approach because no matter which affine transformations we apply to our path, the transformed path will be closed precisely when the original path was closed (see Theorem~\ref{closed-path-composition} for proof).
 
@@ -472,7 +472,7 @@ This approach allows us to further reduce code duplication when defining element
 
 \section{Elements}
 
-We represent \gls{svg} elements using \textsc{pydantic}~\cite{pydantic} models. As described in Section~\ref{impl:representation:attr-composition}, we compose previously defined attribute mixin classes into \emph{element classes}, where each distinct \gls{svg} element has a corresponding class. Examples include \texttt{Svg}, \texttt{Rect}, \texttt{Circle}, or \texttt{Path}. 
+We represent \gls{svg} elements using \textsc{Pydantic}~\cite{pydantic} models. As described in Section~\ref{impl:representation:attr-composition}, we compose previously defined attribute mixin classes into \emph{element classes}, where each distinct \gls{svg} element has a corresponding class. Examples include \texttt{Svg}, \texttt{Rect}, \texttt{Circle}, or \texttt{Path}. 
 
 All \emph{standard attributes} can be accessed and modified using dot notation and passed to the constructor:
 \begin{minted}{python}
@@ -758,7 +758,7 @@ In each formula, the transformations are swapped and their parameters are adjust
 
 \subsection{Decomposition of affine transformation matrices into elementary transformations} \label{matrix-decomposition}
 
-As discussed in section~\ref{reordering-transformations}, swapping the order of two transformations is crucial in the reification process. We have shown that for pairs of \emph{elementary transformations} (\texttt{translate}, \texttt{scale}, \texttt{rotate}, \texttt{skewX}, and \texttt{skewY}), there exist formulas that allow their orders to be swapped and their parameters adjusted in a manner that preserves the overall effect when the transformations are composed. 
+As discussed in Section~\ref{reordering-transformations}, swapping the order of two transformations is crucial in the reification process. We have shown that for pairs of \emph{elementary transformations} (\texttt{translate}, \texttt{scale}, \texttt{rotate}, \texttt{skewX}, and \texttt{skewY}), there exist formulas that allow their orders to be swapped and their parameters adjusted in a manner that preserves the overall effect when the transformations are composed. 
 
 However, we hypothesize that there is no simple closed-form formula for arbitrary affine transformations of the form \texttt{matrix(a, b, c, d, e, f)}.
 

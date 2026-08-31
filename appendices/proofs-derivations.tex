@@ -39,20 +39,20 @@ The other identities described in Section~\ref{reordering-transformations} can b
 \begin{proof}
     First, assume $\gamma$ is closed. By definition, we have $\gamma(0) = \gamma(1)$. Applying $T$ to $\gamma(0)$ yields the following: 
     \[     
-        T\left(\gamma(0)\right) = A\gamma(0) + \vec{b} = A\gamma(1) + \vec{b} = T\left(\gamma(1)\right) 
+        T\left(\gamma(0)\right) = A\gamma(0) + \vec{b} = A\gamma(1) + \vec{b} = T\left(\gamma(1)\right)\text{.}
     \]
     
     Because $T\left(\gamma(0)\right) = T\left(\gamma(1)\right)$, $T \circ \gamma$ is closed. Therefore, $\gamma$ is closed $\implies$ $T \circ \gamma$ is closed. 
     
     We will now approach the problem from the opposite direction. Suppose $T \circ \gamma$ is closed and thus $T\left(\gamma(0)\right) = T\left(\gamma(1)\right)$. Since $T$ is invertible, applying $T^{-1}$ to $T(\gamma(0))$ gives
     \[
-        \underbrace{T^{-1}\left(T\left(\gamma(0)\right)\right)}_{\gamma(0)} = CT\left(\gamma(0)\right) + \vec{d} = CT\left(\gamma(1)\right) + \vec{d} = \underbrace{T^{-1}\left(T\left(\gamma(1)\right)\right)}_{\gamma(1)}
+        \underbrace{T^{-1}\left(T\left(\gamma(0)\right)\right)}_{\gamma(0)} = CT\left(\gamma(0)\right) + \vec{d} = CT\left(\gamma(1)\right) + \vec{d} = \underbrace{T^{-1}\left(T\left(\gamma(1)\right)\right)}_{\gamma(1)}\text{,}
     \]
-    we see that $\gamma(0) = \gamma(1)$, and therefore $\gamma$ is also closed. 
+    from which we see that $\gamma(0) = \gamma(1)$, and therefore $\gamma$ is also closed. 
     
     We have shown that
     \begin{itemize}
-        \item $\gamma$ is closed $\implies$ $T \circ \gamma$ is closed, and,
+        \item $\gamma$ is closed $\implies$ $T \circ \gamma$ is closed, and
         \item $\gamma$ is closed $\impliedby$ $T \circ \gamma$ is closed.
     \end{itemize}
     Therefore, $\gamma$ is closed $\iff$ $T \circ \gamma$ is closed, as desired.
@@ -67,5 +67,5 @@ The other identities described in Section~\ref{reordering-transformations} can b
 \end{theorem}
 
 \begin{proof}
-    Follows immediately from Lemma~\ref{affine-closure} and the fact that affine transformations are closed under composition~\cite[p.~34]{szeliski2022cv}
+    Follows immediately from Lemma~\ref{affine-closure} and the fact that affine transformations are closed under composition~\cite[p.~34]{szeliski2022cv}.
 \end{proof}
