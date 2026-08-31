@@ -4,8 +4,8 @@
 
 ## Downloads
 
-- [official archive](https://is.muni.cz/auth/th/ddfps/)
-- [official PDF](https://is.muni.cz/auth/th/ddfps/thesis.pdf) (2025-05-23)
+- [official archive](https://is.muni.cz/th/ddfps/)
+- [official PDF](https://is.muni.cz/th/ddfps/thesis.pdf) (2025-05-23)
 - [latest built PDF](https://reznakt.github.io/bachelor-thesis/thesis.pdf)
 
 ## Citing
@@ -56,6 +56,5 @@ Online. Bachelor's thesis. Brno: Masaryk University, Faculty of Informatics.
     LOCATION = {Brno},
     SUPERVISOR = {Marek Kadlčík},
     URL = {https://is.muni.cz/th/ddfps/},
-    URL_DATE = {2026-03-16},
 }
 ```
